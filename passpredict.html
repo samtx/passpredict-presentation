@@ -1,0 +1,222 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+
+        <!-- Change the theme here -->
+		<!-- <link rel="stylesheet" href="dist/theme/night.css"> -->
+        <link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+        <!-- Custom styles -->
+        <style>
+            :root {
+                --r-heading-text-transform: unset;
+            }
+            .reveal .slides > section > p {
+                text-align: left;
+            }
+
+            .columns {
+                display: flex;
+                justify-content: space-between;
+            }
+
+        </style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+                <section>
+                    <h1>Passpredict</h1>
+                    <h3>How to see a satellite in your backyard</h3>
+                </section>
+
+                <section>
+                    <h2>What is passpredict?</h2>
+
+                    <ul>
+                        <li>A Python library to compute satellite overpass predictions for a point on Earth.</li>
+                        <li>Command line interface for quick predictions from your terminal.</li>
+                        <!-- <li>Developed by me, with inspiration from other open source astrodynamic toolkits, such as Skyfield, Poliastro, Orbit-Predictor, and Gpredict.</li> -->
+                    </ul>
+
+                    <p class="fragment">
+                        Available now on PyPI with <code>pip install passpredict</code>
+                    </p>
+
+                </section>
+
+                <section>
+
+                    <h2>Who am I?</h2>
+
+                    <p>Hello! I'm Sam Friedman.</p>
+
+                    <ul>
+                        <li>Final year PhD student at Texas A&M researching uncertainty quantification in coupled, multidisciplinary systems.</li>
+                        <li>Just started as software engineer at HawkEye 360 working on their space software team.</li>
+                        <li>Passpredict is my personal passion project, now looking for contributors!</li>
+                    </ul>
+
+                </section>
+
+                <section>
+                    <h2>Why would someone want to compute when a satellite overpass will occur?</h2>
+
+                </section>
+
+                <section>
+
+                    <h3>Just for <b>FUN</b></h3>
+
+                    <ul>
+                        <li>Go outside and see a satellite with your naked eye.</li>
+                        <li>You can even see the International Space Station in bright cities.</li>
+                        <li>View the Starlink "trains" after they launch.</li>
+                    </ul>
+
+                </section>
+
+                <section>
+
+                    <h3>For <b>AMATEUR RADIO</b> and <b>ASTROPHOTOGRAPHY</b></h3>
+
+                    <ul>
+                        <li>Download raw image data from NOAA weather satellites (DIY Google Maps!)</li>
+                        <li>Bounce HAM radio signals off satellites to communicate with people around the world</li>
+                        <li>Take a picture of the ISS with a telescope</li>
+                    </ul>
+
+                </section>
+
+                <section>
+
+                    <div style="display: flex; margin-top: 1em;">
+
+                        <div style="width: 30%; font-size: 16pt; text-align: left">
+                            <p>Video taken of ISS by Dr. Sebastian Voltmer, March 23, 2022</p>
+
+                        </div>
+
+                        <div class="column" style="width: 60%">
+                            <div>
+                                <iframe width=600 height=350 data-autoplay data-src="https://www.youtube.com/embed/8lxbuE--sW0?clip=UgkxfZG39UKYoEdcaWYVkAy7J8kXcsZ6pwB3&amp;clipt=EP-iEhjwqRM&mute=1" ></iframe>
+                                <p style="font-size: small;">Ref: https://www.youtube.com/watch?v=8lxbuE--sW0</p>
+                            </div>
+                            <div class="fragment">
+                                <img data-src="https://pbs.twimg.com/media/FO5YQtFWUAkKMg6?format=jpg&name=large" alt="">
+                                <p>Ref: https://twitter.com/SeVoSpace/status/1508239974893768712</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    https://twitter.com/SeVoSpace/status/1508239974893768712?s=20&t=dPStyhUoIEPaRvYLXPpxEA
+
+                <!-- <iframe data-autplay width="560" height="315" data-src="https://youtube.com/clip/UgkxfZG39UKYoEdcaWYVkAy7J8kXcsZ6pwB3" allowfullscreen data-preload></iframe> -->
+                    <!-- Picture of the ISS taken from Earth -->
+                        <!-- https://www.youtube.com/clip/UgkxfZG39UKYoEdcaWYVkAy7J8kXcsZ6pwB3 -->
+                        <!-- <iframe src="" frameborder="0"></iframe> -->
+                </section>
+
+                <section>
+
+                    <h3>For <b>ENGINEERS</b></h3>
+
+                    <ul>
+                        <li>Know when your satellites are in line-of-sight of your groundstation antennas for downloading/uploading data</li>
+                        <li>Schedule groundstation contacts to maximize overall data throughput</li>
+
+                    <ul>
+
+                </section>
+
+                <section>
+
+                    <h3>For <b>ASTRONOMERS</b></h3>
+
+                    <ul>
+                        <li>Plan your astronomical observing times to minimize the impact of satellite trails on your data collection</li>
+                        <li>Large satellite constellations are more frequently disrupting ground-based astronomy research</li>
+                        <li><em>More on this later...</em></li>
+                    </ul>
+
+                </section>
+
+                </section>
+
+<!--
+
+
+                        ---
+
+                        # This is a challenging problem
+
+                        - The equations and methods are well known, but it requires enough domain knowledge that developing the software is difficult.
+                        - There are existing Python libraries and projects, but they aren't easily extensible to create a general purpose prediction interface.
+
+                        But with enough textbooks we can figure it out.
+
+                        So passpredict was born in 2019 to fill the need for a generalized approach to the satellite prediction problem.
+
+                        ---
+
+                        # Satellite Pass Predictions: An Overview
+
+                        ## Inputs
+
+                        - satellite orbit data: position and velocity of satellite at a specific time (the *epoch*)
+                        - location coordinates: latitude, longitude, elevation of the observer
+                        - time span: time interval to search for passes, $t_0$ to $t_f$
+
+                        ## Outputs
+
+                        - List of predicted passes during the time span
+
+                        Each predicted pass includes:
+                        - start time, end time, time of closest approach
+                        - topocentric relative position and velocity in range, azimuth, elevation
+                        - visibilty criteria: Is the satellite sunlit and can I see it from my location?
+
+                    </textarea>
+                </section> -->
+				<section>Passpredict 1</section>
+				<section>Passpredict 2</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+
+				hash: true,
+                width: 1020,
+                margin: 0.025,
+
+                transition: 'none',
+
+                slideNumber: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
