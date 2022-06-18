@@ -74,6 +74,14 @@
                 text-indent: -3.5rem !important;
             }
 
+            #overview-inputs > * {
+                margin: 0.1em;
+            }
+
+            #overview-outputs > * {
+                margin: 0.1em;
+            }
+
 
 
         </style>
@@ -153,34 +161,7 @@
 
                 </section>
 
-                <section>
 
-                    <div style="display: flex; justify-content: space-between;">
-
-                        <div style="
-                            font-size: 0.75em;
-                            text-align: left;
-                            flex-grow: 1;
-                            max-width: 50%;
-                            padding-top: 2em;
-                        ">
-                        <!-- <p style="">Upon inspection, Dr. Voltmer could see astronauts conducting a spacewalk!</p> -->
-                            <p style="margin-left: -0.5em;">Upon inspection, Dr. Voltmer could see astronauts conducting a spacewalk!</p>
-                            <ul >
-                                <li class="small-list telescope-item" style="margin-bottom: 30px;">Taken with 11" Celestron reflector telescope</li>
-                                <li class="small-list ">Distance of about 400 km</li>
-                                <li class="small-list astronaut-item" style="margin-bottom: 30px;">Spacewalking astronauts Raja Chari and Matthias Maurer are visible</li>
-                                <li class="small-list rocket-item">Docked SpaceX Dragon capsule is visible</li>
-                            </ul>
-                        </div>
-
-                        <div style="flex-grow: 0;" >
-                            <img style="margin: 0.1em;" height=600 data-src="https://pbs.twimg.com/media/FO5YQtFWUAkKMg6?format=jpg&name=large" alt="">
-                            <p style="font-size: small; text-align: center; margin: 0.1em;">Ref: https://twitter.com/SeVoSpace/status/1508239974893768712</p>
-                        </div>
-                    </div>
-
-                </section>
 
                 <section>
 
@@ -219,23 +200,33 @@
 
                 </section>
 
+                <section>
 
+                    <h2>An Overview</h2>
+
+                    <div class="columns">
+
+                        <div id="overview-inputs" style="text-align: left; max-width: 50%;">
+                            <p><u>Inputs</u></p>
+                            <ol>
+                                <li>Orbit data</li>
+                                <li>Location coordinates</li>
+                                <li>Time span</li>
+                            </ol>
+                        </div>
+
+                        <div id="overview-outputs" style="text-align: left; max-width: 50%;">
+                            <p><u>Outputs</u></p>
+                            <p>Predicted pass results</p>
+                            <ol>
+                                <li>start time, end time, time of closest approach</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                </section>
 
 <!--
-
-
-                        ---
-
-                        # This is a challenging problem
-
-                        - The equations and methods are well known, but it requires enough domain knowledge that developing the software is difficult.
-                        - There are existing Python libraries and projects, but they aren't easily extensible to create a general purpose prediction interface.
-
-                        But with enough textbooks we can figure it out.
-
-                        So passpredict was born in 2019 to fill the need for a generalized approach to the satellite prediction problem.
-
-                        ---
 
                         # Satellite Pass Predictions: An Overview
 
@@ -256,8 +247,38 @@
 
                     </textarea>
                 </section> -->
-				<section>Passpredict 1</section>
-				<section>Passpredict 2</section>
+
+                <!-- Extra slides -->
+                <section data-visibility="uncounted">
+
+                    <div class="columns">
+
+                        <div style="
+                            font-size: 0.75em;
+                            text-align: left;
+                            flex-grow: 1;
+                            max-width: 50%;
+                            padding-top: 1em;
+                        ">
+                        <!-- <p style="">Upon inspection, Dr. Voltmer could see astronauts conducting a spacewalk!</p> -->
+                            <p style="margin-left: -0.5em;">Upon inspection, Dr. Voltmer could see astronauts conducting a spacewalk!</p>
+                            <ul >
+                                <li class="small-list telescope-item" style="margin-bottom: 30px;">Taken with 11" Celestron reflector telescope</li>
+                                <li class="small-list ">Distance of about 400 km</li>
+                                <li class="small-list astronaut-item" style="margin-bottom: 30px;">Spacewalking astronauts Raja Chari and Matthias Maurer are visible</li>
+                                <li class="small-list rocket-item">Docked SpaceX Dragon capsule is visible</li>
+                            </ul>
+                        </div>
+
+                        <div style="flex-grow: 0;" >
+                            <img style="margin: 0.1em;" height=600 data-src="https://pbs.twimg.com/media/FO5YQtFWUAkKMg6?format=jpg&name=large" alt="">
+                            <p style="font-size: small; text-align: center; margin: 0.1em;">Ref: https://twitter.com/SeVoSpace/status/1508239974893768712</p>
+                        </div>
+                    </div>
+
+                </section>
+
+
 			</div>
 		</div>
 
@@ -265,6 +286,8 @@
 		<script src="plugin/notes/notes.js"></script>
 		<script src="plugin/markdown/markdown.js"></script>
 		<script src="plugin/highlight/highlight.js"></script>
+        <script src="plugin/math/math.js"></script>
+
 		<script>
 			// More info about initialization & config:
 			// - https://revealjs.com/initialization/
@@ -280,7 +303,7 @@
                 slideNumber: true,
 
 				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.MathJax3 ]
 			});
 		</script>
 	</body>
