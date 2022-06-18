@@ -30,9 +30,51 @@
                 justify-content: space-between;
             }
 
-            ul > li {
-                margin-bottom: 0.5em;
+            .reveal ul {
+                list-style: none;
+
             }
+
+            ul > li {
+                /* padding-left: 1rem; */
+                text-indent: -4.2rem;
+                margin-bottom: 0.75em;
+            }
+
+            .telescope-item::before {
+                content: "🔭 " !important;
+            }
+
+            .rocket-item::before {
+                content: "🚀 " !important;
+            }
+
+            .antenna-item::before {
+                content: "📡 " !important;
+            }
+
+            .planet-item::before {
+                content: "🪐 " !important;
+            }
+
+            .astronaut-item::before {
+                content: "👨‍🚀 " !important;
+            }
+
+            .galaxy-item::before {
+                content: "🌌 " !important;
+            }
+
+
+            ul > li::before {
+                content: "🛰️ ";
+            }
+
+            .small-list {
+                text-indent: -3.5rem !important;
+            }
+
+
 
         </style>
 	</head>
@@ -97,7 +139,7 @@
                     <ul>
                         <li>Download raw image data from NOAA weather satellites (DIY Google Maps!)</li>
                         <li>Bounce HAM radio signals off satellites to communicate with people around the world</li>
-                        <li class="fragment"><em>Take a picture of the ISS with a telescope</em></li>
+                        <li class="telescope-item fragment"><em>Take a picture of the ISS with a telescope</em></li>
                     </ul>
 
                 </section>
@@ -122,12 +164,13 @@
                             max-width: 50%;
                             padding-top: 2em;
                         ">
-                            <p>Upon inspection, Dr. Voltmer could see astronauts conducting a spacewalk!</p>
-                            <ul>
-                                <li style="margin-bottom: 30px;">Taken with 11" Celestron reflector telescope</li>
-                                <li style="margin-bottom: 30px;">Distance of about 400 km</li>
-                                <li style="margin-bottom: 30px;">Spacewalking astronauts Raja Chari and Matthias Maurer are visible</li>
-                                <li>Docked SpaceX Dragon capsule is visible</li>
+                        <!-- <p style="">Upon inspection, Dr. Voltmer could see astronauts conducting a spacewalk!</p> -->
+                            <p style="margin-left: -0.5em;">Upon inspection, Dr. Voltmer could see astronauts conducting a spacewalk!</p>
+                            <ul >
+                                <li class="small-list telescope-item" style="margin-bottom: 30px;">Taken with 11" Celestron reflector telescope</li>
+                                <li class="small-list ">Distance of about 400 km</li>
+                                <li class="small-list astronaut-item" style="margin-bottom: 30px;">Spacewalking astronauts Raja Chari and Matthias Maurer are visible</li>
+                                <li class="small-list rocket-item">Docked SpaceX Dragon capsule is visible</li>
                             </ul>
                         </div>
 
@@ -145,7 +188,7 @@
 
                     <ul>
                         <li>Know when your satellites are in line-of-sight of your groundstation antennas for downloading/uploading data</li>
-                        <li>Schedule groundstation contacts to maximize overall data throughput</li>
+                        <li class="antenna-item">Schedule groundstation contacts to maximize overall data throughput</li>
 
                     <ul>
 
@@ -156,14 +199,27 @@
                     <h3>For <b>ASTRONOMERS</b></h3>
 
                     <ul>
-                        <li>Plan your astronomical observing times to minimize the impact of satellite trails on your data collection</li>
-                        <li>Large satellite constellations are more frequently disrupting ground-based astronomy research</li>
+                        <li class="planet-item">Plan your astronomical observing times to minimize the impact of satellite trails on your data collection</li>
+                        <li class="galaxy-item">Large satellite constellations are more frequently disrupting ground-based astronomy research</li>
                         <li><em>More on this later...</em></li>
                     </ul>
 
                 </section>
 
+                <section>
+
+                    <h2>This is a challenging problem</h2>
+
+                    <ul>
+                        <li>The equations and methods are well known, but it requires domain knowledge</li>
+                        <li class="fragment">There are existing Python libraries and projects, but they aren't easily extensible</li>
+                    </ul>
+
+                    <p class="fragment">So <b>passpredict</b> was born in 2019 to fill the need for a generalized approach to the satellite prediction problem</p>
+
                 </section>
+
+
 
 <!--
 
