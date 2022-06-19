@@ -107,6 +107,8 @@
                         Available on PyPI with <code style="display: inline; padding: 0.2em; margin-left: 0.5em;" data-trim class="hljs language-plaintext">pip install passpredict</code>
                     </p>
 
+                    Requires Python 3.8 and above.
+
                 </section>
 
                 <section>
@@ -142,6 +144,16 @@
 
                 <section>
 
+                    <h2>Story</h2>
+
+                    <p>Story of Sam and Asher watching the ISS from San Antonio and Austin at the same time.</p>
+
+                    <p>It feels like you're in an episode of <em>Bill Nye the Science Guy</em></p>
+                
+                </section>
+
+                <section>
+
                     <h3>For <b>AMATEUR RADIO</b> and <b>ASTROPHOTOGRAPHY</b></h3>
 
                     <ul>
@@ -165,27 +177,26 @@
 
                 <section>
 
-                    <h3>For <b>ENGINEERS</b></h3>
+                    <h3>For <b>ENGINEERS and ASTRONOMERS</b></h3>
 
                     <ul>
                         <li>Know when your satellites are in line-of-sight of your groundstation antennas for downloading/uploading data</li>
                         <li class="antenna-item">Schedule groundstation contacts to maximize overall data throughput</li>
-
+                        <li class="planet-item">Plan your astronomical observing times to minimize the impact of satellite trails on your data collection</li>
                     <ul>
 
                 </section>
 
-                <section>
+                <!-- <section>
 
                     <h3>For <b>ASTRONOMERS</b></h3>
 
                     <ul>
-                        <li class="planet-item">Plan your astronomical observing times to minimize the impact of satellite trails on your data collection</li>
                         <li class="galaxy-item">Large satellite constellations are more frequently disrupting ground-based astronomy research</li>
                         <li><em>More on this later...</em></li>
                     </ul>
 
-                </section>
+                </section> -->
 
                 <section>
 
@@ -225,6 +236,178 @@
                     </div>
 
                 </section>
+
+                <section>
+
+                    <!-- Problem Components -->
+
+                    <p>Inputs</p>
+                    <p>Propagate: Where the satellite will be in intertial coordinates</p>
+                    <p>Coordinate Transform ECI --> ECEF: convert satellite's coordinates from intertial to fixed</p>
+                    <p>Line of Sight Vector: Determine if satellite is above the horizon relative to observer's location</p>
+                    <p>Pass Finding Algorithm: Find intervals during time span where satellite is above horizon</p>
+                    <p>Output: Predicted Passes</p>
+
+                </section>
+                
+                <section>
+
+                    These components are implemented as Python classes.
+
+                    Inputs:
+                        Location()
+                        TLE()  (Orbit)
+                    
+                    Computation:
+                        SGP4Propagator()
+                        Observer()
+
+                    Outputs:
+                        PredictedPass()
+                    
+
+                    The Observer is a composition of a Propagator and a Location.
+                    The pass finding algorithms are called using methods on the Observer object.
+                    
+                </section>
+
+                <section>
+
+                    <h2>Example: finding ISS overpasses over Austin, TX</h2>
+
+                    <p>Go through the computation step by step</p>
+
+                    <p>First, we define our input values for TLE, Location, and time span</p>
+
+                    <p>Code block here...</p>
+                    
+                </section>
+
+                <section>
+
+                    <p>We initialize a propagator using the orbit data</p>
+
+                    <p>Code block here</p>
+
+                    <p>We can then propagate the satellite throughout the time span and get numpy arrays for position</p>
+
+                    <p>Code block here</p>
+
+                    <p>Currently, the propagator class does both the propagation and coordinate transformation, so these position values are in ECEF coordinates.</p>
+
+                </section>
+
+                <section>
+
+                    <!-- Use matplotlib -->
+                    <p>Animated 3D plot of the satellite propagation results...</p>
+                
+                </section>
+
+                <section>
+
+                    The Observer object implements a private method to get the satellite elevation for a given time, t.
+
+                    <p>Plot of the output here...</p>
+
+                </section>
+
+                <section>
+
+                    The pass finding algorithms are implemented similar to the optimization algorithms in SciPy. 
+                    You select which algorithm to use as a function argument.
+
+                    There are currently two options: 
+                      - a peak-finding algorithm based on Orbit-Predictor
+                      - a brute force method
+
+                </section>
+
+                <section>
+
+                    Animated plots of two pass finding algorithms with number of function evaluations
+
+                    Pass finding algorithms can be highly dependent on the type of orbit.
+                    The peak-finding alg doesn't work for highly elliptical orbits and some geosynchronous orbits.
+
+                </section>
+
+                <section>
+
+                    For each pass, we have the following data:
+
+                    PredictedPass object:
+                      aos
+                      tca
+                      los
+
+                </section>
+
+                <section>
+
+                    The CLI can output this information in a nice table
+
+                    <p>code block of table output</p>
+
+                </section>
+
+                <section>
+
+                    If you want to compute overpasses for multiple satellites,
+                    then create multiple propagators and observers and append the resulting predicted pass lists.
+
+                </section>
+
+                <section>
+
+                    <h4>How to Determine Satellite Visibility?</h4>
+
+                    <p>The observing location must be in darkness</p>
+                    <p>The satellite must be sunlit</p>
+
+                    <p>This occurs mostly during sunset or sunrise</p>
+
+                </section>
+
+                <section>
+
+                    <p>Computing the Satellite Visibility</p>
+                    <p>Sun Position</p>
+                    <p>Location Sunlit?</p>
+                    <p>Satellite Sunlit?</p>
+
+                </section>
+
+                <section>
+
+                    CLI demo with satellite visibility in DC and Austin
+
+                </section>
+
+                <section>
+
+                    Future Work:
+
+                    <ul>
+                        <li>Refactor the core Propagator and Observer classes to be more modular.</li>
+                        <li>Leverage the multifidelity aspects of the problem space by allowing a user to pick and choose the computation for each component of the prediction problem.</li>
+                        <li>Create tutorials on how to build your own components. Research is ongoing and new techniques are being developed. Make it easy to incorporate a new propagator or pass finding algorithm into this library.</li>
+                    </ul>
+                    
+                </section>
+
+                <section>
+                    Other great Python projects in this area:
+
+                    <ul>
+                        <li>Skyfield</li>
+                        <li>Poliastro</li>
+                    </ul>
+
+                    <p>The IAU Center for Space </p>
+                    https://www.iau.org/science/scientific_bodies/centres/CPS/cps-sathhub/
+                </section>
+
 
 <!--
 
@@ -278,6 +461,17 @@
 
                 </section>
 
+                <section data-visibility="uncounted">
+                    <p>Each component's intermediate results can be computed using different methods.</p>
+
+                    <!-- <p>The method choice is determined by the user's accuracy and speed requirements.</p> -->
+                    <p>Passpredict treats satellite predictions as a <em>multifidelity</em> problem.</p>
+
+                    <p>Low fidelity: less accurate to real-world physics, lower computational expense, faster to execute.</p>
+
+                    <p>High fidelity: more accurate to real-world physics, higher computational expense, slower to execute</p>
+
+                </section>
 
 			</div>
 		</div>
