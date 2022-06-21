@@ -82,6 +82,28 @@
                 margin: 0.1em;
             }
 
+            #problem-components {
+                display: flex;
+                justify-content: space-between;
+                gap: 2em;
+                font-size: 0.75em;
+            }
+
+            .problem-component {
+                box-sizing: content-box;
+                padding: 0.25em;
+                border: 0.1em solid white;
+            }
+
+            /* .problem-component:first-child {
+                margin-right: 0.5em;
+            }
+
+            .problem-component:last-child {
+                margin-left: 0.5em;
+            } */
+
+
 
 
         </style>
@@ -240,6 +262,16 @@
                 <section>
 
                     <!-- Problem Components -->
+                    <div id="problem-components">
+                        <p class="problem-component">Orbit Propagation</p>
+                        
+                        <p class="problem-component">Coordinate Transform</p>
+                        
+                        <p class="problem-component">Line of Sight Vector</p>
+                        
+                        <p class="problem-component">Pass Search Algorithm</p>
+                    </div>
+
 
                     <p>Inputs</p>
                     <p>Propagate: Where the satellite will be in intertial coordinates</p>
@@ -273,9 +305,27 @@
 
                 <section>
 
-                    <h2>Example: finding ISS overpasses over Austin, TX</h2>
+                    <h2>Example: Find ISS overpasses over Austin, TX</h2>
 
-                    <p>Go through the computation step by step</p>
+                    <p>Coordinates: latitude = 30.2711 N, longitude: 97.7437 W</p>
+                    <p>Orbit Data: Copied from Celestrak.com for International Space Station, NORAD ID 25544</p>
+
+                    <!-- Go through the computation step by step -->
+
+<pre><code class="hljs language-python" >
+from passpredict import Location, TLE
+
+location = Location('Austin, TX', 30.2711, -97.7437, 0)
+tle = TLE(
+    25544,  # International space station, Norad ID 25544
+    (
+        '1 25544U 98067A   21274.89460679  .00005555  00000-0  10931-3 0  9992',
+        '2 25544  51.6449 175.1112 0004190  48.8354  53.9444 15.48895782305133'
+    ),
+    name='ISS',
+)
+</code></pre>
+                    
 
                     <p>First, we define our input values for TLE, Location, and time span</p>
 
